@@ -1,6 +1,18 @@
 import React from 'react'
+import { useEffect } from 'react'   
+import { useSelector, useDispatch } from 'react-redux'
+import { fetchCategory, changeCategory } from '../redux/features/categorySlice'
 
 function Category() {
+
+    const categoryState = useSelector(state => state.categoryR)
+    const dispatch = useDispatch();
+
+    useEffect(() =>{
+        dispatch(fetchCategory());
+    }, [])
+
+
     return (
         <div className="col-lg-3 d-none d-lg-block">
             <a
@@ -11,7 +23,7 @@ function Category() {
             >
                 <h6 className="text-dark m-0">
                     <i className="fa fa-bars mr-2" />
-                    Categories
+                    {categoryState.selectedCategory}
                 </h6>
                 <i className="fa fa-angle-down text-dark" />
             </a>
@@ -21,53 +33,18 @@ function Category() {
                 style={{ width: "calc(100% - 30px)", zIndex: 999 }}
             >
                 <div className="navbar-nav w-100">
-                    {/* <div className="nav-item dropdown dropright">
-                        <a
-                            href="#"
-                            className="nav-link dropdown-toggle"
-                            data-toggle="dropdown"
-                        >
-                            Dresses <i className="fa fa-angle-right float-right mt-1" />
-                        </a>
-                        <div className="dropdown-menu position-absolute rounded-0 border-0 m-0">
-                            <a href="" className="dropdown-item">
-                                Men's Dresses
-                            </a>
-                            <a href="" className="dropdown-item">
-                                Women's Dresses
-                            </a>
-                            <a href="" className="dropdown-item">
-                                Baby's Dresses
-                            </a>
-                        </div>
-                    </div> */}
-                    <a href="" className="nav-item nav-link">
-                        Shirts
-                    </a>
-                    <a href="" className="nav-item nav-link">
-                        Jeans
-                    </a>
-                    <a href="" className="nav-item nav-link">
-                        Swimwear
-                    </a>
-                    <a href="" className="nav-item nav-link">
-                        Sleepwear
-                    </a>
-                    <a href="" className="nav-item nav-link">
-                        Sportswear
-                    </a>
-                    <a href="" className="nav-item nav-link">
-                        Jumpsuits
-                    </a>
-                    <a href="" className="nav-item nav-link">
-                        Blazers
-                    </a>
-                    <a href="" className="nav-item nav-link">
-                        Jackets
-                    </a>
-                    <a href="" className="nav-item nav-link">
-                        Shoes
-                    </a>
+                                        
+                    {
+                        categoryState.arrCategory.map(e => (
+                            <span 
+                                data-toggle="collapse"
+                                href="#navbar-vertical"
+                                onClick={() => {dispatch(changeCategory(e.name))}}
+                                 className="nav-item nav-link">
+                                {e.name}
+                            </span>
+                        ))
+                    }
                 </div>
             </nav>
         </div>
