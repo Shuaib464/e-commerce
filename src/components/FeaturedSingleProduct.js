@@ -1,11 +1,12 @@
 import React from 'react'
-
-function discountedPrice(price, discount){
-    var discountPrice = (price - (price * (discount/100))).toFixed(2);
-    return discountPrice;
-}
+import { getDiscountedPrice } from '../BLL/utility'
+import { useDispatch } from 'react-redux'
+import { addToCart } from '../redux/features/cartSlice'
 
 function FeaturedSingleProduct(props) {
+
+    const dispatch = useDispatch()
+
     return (
         <>
             <div className="col-lg-3 col-md-4 col-sm-6 pb-1">
@@ -32,10 +33,13 @@ function FeaturedSingleProduct(props) {
                             {props.product.title}
                         </a>
                         <div className="d-flex align-items-center justify-content-center mt-2">
-                            <h5>{discountedPrice(props.product.price, props.product.discountPercentage)}</h5>
+                            <h5>{getDiscountedPrice(props.product.price, props.product.discountPercentage)}</h5>
                             <h6 className="text-muted ml-2">
-                                <del>{props.product.price}</del>
+                                <del>{props.product.price.toFixed(2)}</del>
                             </h6>
+                        </div>
+                        <div>
+                            <input onClick={()=> {dispatch(addToCart(props.product))}} className='btn btn-primary' type="button" value="Add to Cart" />
                         </div>
                         <div className="d-flex align-items-center justify-content-center mb-1">
                             <small className="fa fa-star text-primary mr-1" />
