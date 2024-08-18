@@ -6,6 +6,7 @@ import HeroSection from '../components/HeroSection'
 import DisplayCategory from '../components/DisplayCategory'
 import { useDispatch } from 'react-redux'
 import { fetchProducts } from '../redux/features/productSlice'
+import FeaturedProducts from '../components/FeaturedProducts'
 
 function Home() {
 
@@ -22,6 +23,9 @@ function Home() {
       
       {/* category section  */}
       <DisplayCategory />
+
+      {/* Featured-Products section  */}
+      <FeaturedProducts />
    </>
   )
 }
