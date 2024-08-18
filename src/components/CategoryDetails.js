@@ -1,5 +1,6 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { changeCategory } from '../redux/features/categorySlice';
 
 function getFilteredProductOfCategory(categoryName,arrProduct){
     var arrFilteredProduct = arrProduct.filter(e => e.category.toUpperCase() == categoryName.toUpperCase());
@@ -8,6 +9,8 @@ function getFilteredProductOfCategory(categoryName,arrProduct){
 }
 
 function CategoryDetails({category, products}) {
+
+    const dispatch = useDispatch();
 
     if(products.length == 0){
         return(
@@ -21,8 +24,8 @@ function CategoryDetails({category, products}) {
 
         return (
             <>
-                <div className="col-lg-3 col-md-4 col-sm-6 pb-1">
-                    <a className="text-decoration-none" href="">
+                <div onClick={() => { dispatch(changeCategory(category.name)) }} className="col-lg-3 col-md-4 col-sm-6 pb-1">
+                    <span className="text-decoration-none">
                         <div className="cat-item d-flex align-items-center mb-4">
                             <div className="overflow-hidden" style={{ width: 100, height: 100 }}>
                                 <img className="img-fluid" src={arrFilter.length !== 0 ? arrFilter[0].thumbnail : ''} alt="" />
@@ -32,7 +35,7 @@ function CategoryDetails({category, products}) {
                                 <small className="text-body">{arrFilter.length !== 0 ? arrFilter.length: ''}</small>
                             </div>
                         </div>
-                    </a>
+                    </span>
                 </div>
             </>
         )
