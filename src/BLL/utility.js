@@ -10,3 +10,12 @@ export function getCartTotalItems(arrCart) {
     }
     return totalItems;
 }
+
+export function getTotalAmount(arrCart) {
+    let totalAmount = 0;
+    for (const e of arrCart) {
+        let price = getDiscountedPrice(e.product.price, e.product.discountPercentage) * e.quantity;
+        totalAmount += price;
+    }
+    return totalAmount;
+}
