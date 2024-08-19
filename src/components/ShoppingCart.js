@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getDiscountedPrice, getTotalAmount } from '../BLL/utility';
+import { getCartTotalAmount, getDiscountedPrice, getTotalAmount } from '../BLL/utility';
 import { decreaseProduct, increaseProduct, increaseQuantity, removeProduct } from '../redux/features/cartSlice';
 
 function ShoppingCart() {
@@ -106,7 +106,7 @@ function ShoppingCart() {
                         <div className="pt-2">
                             <div className="d-flex justify-content-between mt-2">
                                 <h5>Total</h5>
-                                <h5>${getTotalAmount(cartState.arrCart)}</h5>
+                                <h5>${getCartTotalAmount(cartState.arrCart)}</h5>
                             </div>
                             <button className="btn btn-block btn-primary font-weight-bold my-3 py-3">
                                 Proceed To Checkout
