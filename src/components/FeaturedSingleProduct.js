@@ -39,7 +39,14 @@ function FeaturedSingleProduct(props) {
                             </h6>
                         </div>
                         <div>
-                            <input onClick={()=> {dispatch(addToCart(props.product))}} className='btn btn-primary' type="button" value="Add to Cart" />
+                            <input 
+                                onClick={()=> {
+                                    dispatch(addToCart(props.product)); 
+                                    alert('Product added...')
+                                }} 
+                                className='btn btn-primary' 
+                                type="button" 
+                                value="Add to Cart" />
                         </div>
                         <div className="d-flex align-items-center justify-content-center mb-1">
                             <small className="fa fa-star text-primary mr-1" />
