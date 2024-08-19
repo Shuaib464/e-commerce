@@ -35,8 +35,9 @@ function Category() {
                 <div className="navbar-nav w-100">
                                         
                     {
-                        categoryState.arrCategory.map(e => (
+                        categoryState.arrCategory.map((e, i) => (
                             <span 
+                                key={i}
                                 data-toggle="collapse"
                                 href="#navbar-vertical"
                                 onClick={() => {dispatch(changeCategory(e.name))}}

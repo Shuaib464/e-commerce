@@ -23,8 +23,8 @@ function DisplayCategory() {
                     <div className="row px-xl-5 pb-3">
                         
                         {
-                            categoryState.arrCategory.map(e => (
-                                <CategoryDetails  category={e} products={productState.arrProduct} />
+                            categoryState.arrCategory.map((e, i) => (
+                                <CategoryDetails key={i} category={e} products={productState.arrProduct} />
                             ))
                         }
                         

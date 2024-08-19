@@ -25,7 +25,7 @@ function FeaturedProducts() {
                     <div className="row px-xl-5">
                         
                         {
-                            filterProducts.map(e => ( <FeaturedSingleProduct product={e} /> ))
+                            filterProducts.map((e, i) => ( <FeaturedSingleProduct key={i} product={e} /> ))
                         }
                        
                     </div>
