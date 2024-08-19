@@ -8,6 +8,5 @@ export function getCartTotalItems(arrCart) {
     for (const e of arrCart) {
         totalItems += e.quantity;
     }
-
     return totalItems;
 }
